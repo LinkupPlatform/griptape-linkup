@@ -1,0 +1,60 @@
+name: Unit Tests
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test-ubuntu:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.10", "3.11", "3.12", "3.13"]
+    steps:
+      - name: Checkout actions
+        uses: actions/checkout@v4
+      - name: Init environment
+        uses: ./.github/actions/init-environment
+      - name: Run unit tests
+        run: make test/unit
+  test-lowest-direct:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.10"]
+    steps:
+      - name: Checkout actions
+        uses: actions/checkout@v4
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Run unit tests against the lowest supported dependencies
+        run: uv run --isolated --resolution lowest-direct pytest tests/unit
+  test-windows:
+    runs-on: windows-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.10"]
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - name: Checkout actions
+        uses: actions/checkout@v4
+      - name: Init environment
+        uses: ./.github/actions/init-environment
+      - name: Run unit tests
+        run: uv run pytest tests/unit

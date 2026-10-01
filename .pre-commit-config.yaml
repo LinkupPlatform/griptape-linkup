@@ -1,0 +1,35 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: check-added-large-files
+      - id: check-merge-conflict
+      - id: detect-private-key
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+  - repo: local
+    hooks:
+      - id: ruff-lint
+        name: Ruff lint
+        entry: make lint
+        language: system
+        types: [python]
+        pass_filenames: false
+      - id: ruff-format
+        name: Ruff format
+        entry: make format
+        language: system
+        types: [python]
+        pass_filenames: false
+      - id: pyright
+        name: Pyright
+        entry: make check/types
+        language: system
+        types: [python]
+        pass_filenames: false
+      - id: typos
+        name: Typos
+        entry: make check/spell
+        language: system
+        types: [python]
+        pass_filenames: false
