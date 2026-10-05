@@ -28,8 +28,8 @@ test = ["pytest>=8.3.1", "pytest-mock>=3.14.0"]
 dev = ["pre-commit>=4.0.0", "pyright>=1.1.390", "ruff>=0.8.0", "typos>=1.28.0"]
 
 [tool.uv]
-default-groups = ["dev", "test"]
 exclude-newer = "2 weeks"
+default-groups = ["dev", "test"]
 
 [build-system]
 requires = ["hatchling"]
