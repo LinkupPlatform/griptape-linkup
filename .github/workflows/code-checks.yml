@@ -22,7 +22,7 @@ jobs:
         python-version: ["3.12"]
     steps:
       - name: Checkout actions
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
       - name: Init environment
         uses: ./.github/actions/init-environment
       - name: Run formatter
@@ -35,7 +35,7 @@ jobs:
         python-version: ["3.12"]
     steps:
       - name: Checkout actions
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
       - name: Init environment
         uses: ./.github/actions/init-environment
       - name: Run type checker
@@ -48,7 +48,7 @@ jobs:
         python-version: ["3.12"]
     steps:
       - name: Checkout actions
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
       - name: Init environment
         uses: ./.github/actions/init-environment
       - name: Run linter
@@ -61,7 +61,7 @@ jobs:
         python-version: ["3.12"]
     steps:
       - name: Checkout actions
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
       - name: Init environment
         uses: ./.github/actions/init-environment
       - name: Run spell checker
@@ -74,7 +74,7 @@ jobs:
         python-version: ["3.12"]
     steps:
       - name: Checkout actions
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
       - name: Init environment
         uses: ./.github/actions/init-environment
       - name: Build package
